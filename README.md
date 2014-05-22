@@ -1,4 +1,5 @@
-cell_death
-==========
+ealife
+======
 
-Explores dirty work hypothesis with cell death
+Contributors:
+David B. Knoester, Heather J. Goldsby.

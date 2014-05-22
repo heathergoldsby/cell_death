@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>567B441A-9980-4BF8-ABDA-246B5D03375C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ealife</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>39D6355F-DBEB-418F-B0F1-37180B7CF218</key>
+		<string>https://github.com/heathergoldsby/cell_death.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ealife.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>39D6355F-DBEB-418F-B0F1-37180B7CF218</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/heathergoldsby/cell_death.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>39D6355F-DBEB-418F-B0F1-37180B7CF218</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>39D6355F-DBEB-418F-B0F1-37180B7CF218</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cell_death</string>
+		</dict>
+	</array>
+</dict>
+</plist>
