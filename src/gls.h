@@ -56,6 +56,10 @@ LIBEA_MD_DECL(NOR_MUTATION_MULT, "ea.gls.nor_mutation_mult", double);
 LIBEA_MD_DECL(XOR_MUTATION_MULT, "ea.gls.xor_mutation_mult", double);
 LIBEA_MD_DECL(EQUALS_MUTATION_MULT, "ea.gls.equals_mutation_mult", double);
 
+LIBEA_MD_DECL(APOPTOSIS_COUNT, "ea.digevo.apoptosis_count", double);
+LIBEA_MD_DECL(APOPTOSIS_WORKLOAD, "ea.digevo.apoptosis_workload", double);
+LIBEA_MD_DECL(APOPTOSIS_SOMA_COUNT, "ea.digevo.apoptosis_soma_count", double);
+
 
 // Germ instructions!
 
@@ -99,12 +103,17 @@ DIGEVO_INSTRUCTION_DECL(if_workload_g10){
     }
 }
 
-DIGEVO_INSTRUCTION_DECL(if_workload_g1){
-    if(get<WORKLOAD>(*p, 0) < 1) {
+DIGEVO_INSTRUCTION_DECL(if_workload_g25){
+    if(get<WORKLOAD>(*p, 0) < 25) {
         hw.advanceHead(Hardware::IP);
     }
 }
 
+DIGEVO_INSTRUCTION_DECL(if_workload_g50){
+    if(get<WORKLOAD>(*p, 0) < 50) {
+        hw.advanceHead(Hardware::IP);
+    }
+}
 
 
 // Events!
@@ -112,7 +121,6 @@ DIGEVO_INSTRUCTION_DECL(if_workload_g1){
 /*! Did an organism die by suicide? If so, tally it!
  
  */
-LIBEA_MD_DECL(APOPTOSIS_COUNT, "ea.digevo.apoptosis_count", int);
 
 template <typename EA>
 struct gs_apoptosis_event : death_event<EA> {
@@ -132,6 +140,11 @@ struct gs_apoptosis_event : death_event<EA> {
                             EA& ea) {
         if (get<APOPTOSIS_STATUS>(offspring, 0) == 1) {
             get<APOPTOSIS_COUNT>(ea, 0) += 1;
+            get<APOPTOSIS_WORKLOAD>(ea,0) += get<WORKLOAD>(offspring, 0);
+            
+            if (!get<GERM_STATUS>(offspring, true)) {
+                get<APOPTOSIS_SOMA_COUNT>(ea,0) += 1;
+            }
         }
         
     }
@@ -341,13 +354,13 @@ struct gls_replication : end_of_update_event<EA> {
                 mutate(germ,m,p->ea());
                 
                 // and fill up the offspring population with copies of the germ:
-                /*   typename EA::individual_type::ea_type::individual_ptr_type o = (*i)->ea().copy_individual(g);
-                 (*i)->insert((*i)->end(), o);
-                 */
                 typename EA::individual_type::ea_type::individual_ptr_type o=p->ea().copy_individual(germ.repr());
                 inherits_from(germ, *o, p->ea());
 
                 p->insert(p->end(), o);
+                
+                // add as founder
+                p->ea().founder().insert(p->ea().founder().end(), p->ea().copy_individual(*o));
                 
                 offspring.push_back(p);
                 
@@ -379,7 +392,6 @@ struct gls_replication : end_of_update_event<EA> {
             std::swap(ea.population(), survivors);
         }
         
-        //        assert(ea.population().size() == 10); 
         
         if ((ea.current_update() % 100) == 0) {
             if (germ_num.size() > 0) {
@@ -422,7 +434,7 @@ struct gls_replication : end_of_update_event<EA> {
     
 };
 
-/*! Prints information about the mean number of task-switches
+/*! Prints information about apoptotic cells
  */
 
 
@@ -431,7 +443,11 @@ struct apoptosis_tracking : end_of_update_event<EA> {
     apoptosis_tracking(EA& ea) : end_of_update_event<EA>(ea), _df("apop.dat") {
         _df.add_field("update")
         .add_field("mean_apop")
-        .add_field("max_apop");
+        .add_field("max_apop")
+        .add_field("mean_apop_workload")
+        .add_field("max_apop_workload")
+        .add_field("mean_apop_soma")
+        .add_field("max_apop_soma");
         
     }
     
@@ -443,15 +459,23 @@ struct apoptosis_tracking : end_of_update_event<EA> {
     virtual void operator()(EA& ea) {
         if ((ea.current_update() % 100) == 0) {
             accumulator_set<double, stats<tag::mean, tag::max> > apop;
+            accumulator_set<double, stats<tag::mean, tag::max> > apop_wl;
+            accumulator_set<double, stats<tag::mean, tag::max> > apop_s;
 
             
             for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
                 apop(get<APOPTOSIS_COUNT>(i->ea(), 0));
+                apop(get<APOPTOSIS_WORKLOAD>(i->ea(), 0));
+                apop(get<APOPTOSIS_SOMA_COUNT>(i->ea(),0));
             }
 
             _df.write(ea.current_update())
             .write(mean(apop))
             .write(max(apop))
+            .write(mean(apop_wl))
+            .write(max(apop_wl))
+            .write(mean(apop_s))
+            .write(max(apop_s))
             .endl();
         }
         

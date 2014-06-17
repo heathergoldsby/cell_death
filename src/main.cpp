@@ -22,12 +22,11 @@
 
 
 #include <ea/digital_evolution/ancestors/selfrep_not_ancestor.h>
+#include <ea/digital_evolution/population_founder.h>
 
+#include <ea/line_of_descent.h>
 
-//#include <ea/digital_evolution/population_founder.h>
-//#include <ea/line_of_descent.h>
-//#include "subpopulation_lod_analysis.h"
-//#include "lod_knockouts.h"
+#include "multi_founder.h"
 
 
 //! Configuration object for an EA.
@@ -67,13 +66,14 @@ struct gls_configuration : public default_configuration {
         append_isa<donate_res_to_group>(ea);
         append_isa<get_xy>(ea);
         append_isa<apoptosis>(ea);
-        append_isa<if_workload_g1>(ea);
         append_isa<if_workload_g5>(ea);
         append_isa<if_workload_g10>(ea);
+        append_isa<if_workload_g25>(ea);
+        append_isa<if_workload_g50>(ea);
         
         add_event<task_mutagenesis>(ea);
         add_event<gs_apoptosis_event>(ea);
-//        add_event<gs_inherit_event>(ea);
+        add_event<gs_inherit_event>(ea);
         add_event<task_resource_consumption>(ea);
         
     }
@@ -125,21 +125,11 @@ struct gls_configuration : public default_configuration {
         task_equals->consumes(resI);
     }
     
-    //! Called to generate the initial EA population.
-    template <typename EA>
-    void initial_population(EA& ea) {
-        generate_ancestors(selfrep_not_ancestor(), 1, ea);
-    }
+
 };
 
 
-/*! Artificial life simulation definition.
- */
-/*
-typedef digital_evolution<
-gls_configuration, spatial, empty_neighbor, round_robin
-> ea_type;
-*/
+
 typedef digital_evolution
 < gls_configuration
 , organism< >
@@ -149,27 +139,10 @@ typedef digital_evolution
 , empty_neighbor
 > ea_type;
 
-/*
- 
-template <typename EA>
-struct mp_configuration : public abstract_configuration<EA> {
-    void initial_population(EA& ea) {
-        for(typename EA::iterator i=ea.begin(); i!=ea.end(); ++i) {
-            (*i).founder() = (**(*i).population().begin());
-        }
-    }
-};
-*/
 
-/*
-//! Meta-population definition.
-typedef meta_population<
-population_lod<population_founder<ea_type> >, 
- mp_configuration> mea_type;
- */
 
 typedef metapopulation
-< subpopulation<ea_type>
+< subpopulation<multi_founder<ea_type>, constant, ea_type, directS, default_lod_traits >
 > mea_type;
 
 
@@ -235,8 +208,9 @@ public:
         add_event<gls_replication>(ea);
         add_event<task_performed_tracking>(ea);
         add_event<apoptosis_tracking>(ea);
-//        add_event<datafiles::mrca_lineage>(ea);
-//        add_event<population_founder_event>(ea);
+        add_event<lod_event>(ea);
+        add_event<datafiles::mrca_lineage>(ea);
+        add_event<multi_founder_event>(ea);
     };
 };
 LIBEA_CMDLINE_INSTANCE(mea_type, cli);
