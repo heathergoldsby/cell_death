@@ -469,7 +469,6 @@ struct apoptosis_tracking : end_of_update_event<EA> {
                 apop_s(get<APOPTOSIS_SOMA_COUNT>(i->ea(),0));
             }
 
-            if (apop.size() > 0)) {
             _df.write(ea.current_update())
             .write(mean(apop))
             .write(max(apop))
@@ -478,16 +477,7 @@ struct apoptosis_tracking : end_of_update_event<EA> {
             .write(mean(apop_s))
             .write(max(apop_s))
             .endl();
-            } else {
-                _df.write(ea.current_update())
-                .write(0)
-                .write(0)
-                .write(0)
-                .write(0)
-                .write(0)
-                .write(0)
-                .endl();
-            }
+    
         }
         
     }
