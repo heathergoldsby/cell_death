@@ -27,6 +27,7 @@
 #include <ea/line_of_descent.h>
 
 #include "multi_founder.h"
+#include "lod_knockouts.h"
 
 
 //! Configuration object for an EA.
@@ -194,7 +195,7 @@ public:
     
     virtual void gather_tools() {
 
-        //add_tool<ealib::analysis::lod_knockouts>(this);
+        add_tool<ealib::analysis::lod_knockouts>(this);
         //add_tool<ealib::analysis::lod_gls_circle_square_plot>(this);
         //add_tool<ealib::analysis::lod_gls_germ_soma_mean_var>(this);
         //add_tool<ealib::analysis::lod_gls_aging_res_over_time>(this);
