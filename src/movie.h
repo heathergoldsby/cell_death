@@ -46,8 +46,6 @@ namespace ealib {
                     for (int y=0; y<get<SPATIAL_Y>(ea); ++y){
                         typename EA::individual_type::ea_type::environment_type::location_ptr_type l = control_sp->ea().env().location(x,y);
                         
-//                        bool occupied() { return ((p != 0) && (p->alive())); }
-
                         // Format: g(1)/s(0); fml; alive(1)/apop(0)
                         if (l->inhabitant() != 0) {
                             // l->occupied()

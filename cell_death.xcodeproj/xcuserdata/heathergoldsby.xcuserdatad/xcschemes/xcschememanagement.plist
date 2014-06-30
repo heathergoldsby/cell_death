@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>apop_replaceable.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>34</integer>
+		</dict>
+		<key>apop_sterile.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>33</integer>
+		</dict>
 		<key>gls.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -83,6 +93,16 @@
 			<true/>
 		</dict>
 		<key>42441A8A15861724009863BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>480FBF761961E144006919A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>480FBF871961E38E006919A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

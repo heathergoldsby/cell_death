@@ -42,6 +42,10 @@ using namespace boost::accumulators;
  */
 
 LIBEA_MD_DECL(GERM_STATUS, "ea.gls.germ_status", int);
+LIBEA_MD_DECL(STERILE, "ea.gls.sterile", int);
+LIBEA_MD_DECL(REPLACEABLE, "ea.gls.replaceable", int);
+
+
 LIBEA_MD_DECL(TASK_MUTATION_PER_SITE_P, "ea.gls.task_mutation_per_site_p", double);
 //LIBEA_MD_DECL(GERM_MUTATION_PER_SITE_P, "ea.gls.germ_mutation_per_site_p", double);
 LIBEA_MD_DECL(WORKLOAD, "ea.gls.workload", double);
@@ -70,6 +74,51 @@ DIGEVO_INSTRUCTION_DECL(become_soma) {
     put<GERM_STATUS>(false,*p);
 }
 
+DIGEVO_INSTRUCTION_DECL(sterilize) {
+    put<STERILE>(true,*p);
+}
+
+DIGEVO_INSTRUCTION_DECL(replaceable) {
+    put<REPLACEABLE>(true,*p);
+}
+
+// checks to see if an organism is sterile before it divides
+DIGEVO_INSTRUCTION_DECL(h_divide_respect_sterile) {
+    if (!get<STERILE>(*p, false)) {
+        if(hw.age() >= (0.8 * hw.original_size())) {
+            typename Hardware::representation_type& r=hw.repr();
+            
+            // Check to see if the offspring would be a good length.
+            int divide_pos = hw.getHeadLocation(Hardware::RH);
+            int extra_lines = r.size() - hw.getHeadLocation(Hardware::WH);
+            
+            int child_size = r.size() - divide_pos - extra_lines;
+            int parent_size = r.size() - child_size - extra_lines;
+            double ratio = 2.0;
+            
+            if ((child_size < (hw.original_size()/ratio)) ||
+                (child_size > (hw.original_size()*ratio)) ||
+                (parent_size < (hw.original_size()/ratio)) ||
+                (parent_size > (hw.original_size()*ratio))){
+                // fail and die a miserable death!
+                hw.replicated();
+                return;
+            }
+            
+            
+            typename Hardware::representation_type::iterator f=r.begin(),l=r.begin();
+            std::advance(f, hw.getHeadLocation(Hardware::RH));
+            std::advance(l, hw.getHeadLocation(Hardware::WH));
+            typename Hardware::representation_type offr(f, l);
+            
+            
+            r.resize(parent_size);
+            replicate(p, offr, ea);
+            hw.replicated();
+        }
+
+    }
+}
 
 /*! Execute the next instruction if the organism is marked as germ.
  */
@@ -114,6 +163,29 @@ DIGEVO_INSTRUCTION_DECL(if_workload_g50){
         hw.advanceHead(Hardware::IP);
     }
 }
+
+/*! Selects the location of an empty neighbor location *or a neighbor marked as replacable!*
+ to the parent as the location for an offspring. 
+ (Note: here empty includes locations occupied by dead organisms.)
+ 
+ If there is not an empty location, then the replacement does not proceed. This method
+ does not makes sense with well-mixed, since the 'neighborhood' of an organism is
+ 8 random locations.
+ */
+struct empty_or_replaceable_neighbor {
+    template <typename EA>
+    std::pair<typename EA::environment_type::iterator, bool> operator()(typename EA::individual_ptr_type parent, EA& ea) {
+        typedef typename EA::environment_type::iterator location_iterator;
+        std::pair<location_iterator, location_iterator> i = ea.env().neighborhood(*parent);
+        
+        for( ; i.first != i.second; ++i.first) {
+            if(!i.first->occupied() || get<REPLACEABLE>(*(i.first->inhabitant()),false)) {
+                return std::make_pair(i.first, true);
+            }
+        }
+        return std::make_pair(i.second, false);
+    }
+};
 
 
 // Events!

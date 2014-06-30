@@ -14,10 +14,42 @@
 		42441A9E15861785009863BE /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9915861785009863BE /* libboost_serialization.dylib */; };
 		42441A9F15861785009863BE /* libboost_signals.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9A15861785009863BE /* libboost_signals.dylib */; };
 		42441AA2158617D9009863BE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 42441A82158616AF009863BE /* main.cpp */; };
+		480FBF7A1961E144006919A5 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB67EE616F789C800111A41 /* libea.a */; };
+		480FBF7B1961E144006919A5 /* libboost_iostreams.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9615861785009863BE /* libboost_iostreams.dylib */; };
+		480FBF7C1961E144006919A5 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9715861785009863BE /* libboost_program_options.dylib */; };
+		480FBF7D1961E144006919A5 /* libboost_regex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9815861785009863BE /* libboost_regex.dylib */; };
+		480FBF7E1961E144006919A5 /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9915861785009863BE /* libboost_serialization.dylib */; };
+		480FBF7F1961E144006919A5 /* libboost_signals.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9A15861785009863BE /* libboost_signals.dylib */; };
+		480FBF851961E157006919A5 /* apop_sterile_control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 480FBF751961E118006919A5 /* apop_sterile_control.cpp */; };
+		480FBF8B1961E38E006919A5 /* libea.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB67EE616F789C800111A41 /* libea.a */; };
+		480FBF8C1961E38E006919A5 /* libboost_iostreams.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9615861785009863BE /* libboost_iostreams.dylib */; };
+		480FBF8D1961E38E006919A5 /* libboost_program_options.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9715861785009863BE /* libboost_program_options.dylib */; };
+		480FBF8E1961E38E006919A5 /* libboost_regex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9815861785009863BE /* libboost_regex.dylib */; };
+		480FBF8F1961E38E006919A5 /* libboost_serialization.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9915861785009863BE /* libboost_serialization.dylib */; };
+		480FBF901961E38E006919A5 /* libboost_signals.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 42441A9A15861785009863BE /* libboost_signals.dylib */; };
+		480FBF961961E3B3006919A5 /* apop_replaceable_control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 480FBF861961E355006919A5 /* apop_replaceable_control.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		42441A8915861724009863BE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		480FBF801961E144006919A5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		480FBF911961E38E006919A5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -44,6 +76,11 @@
 		42441B2815862C44009863BE /* libea.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libea.a; path = ../../../DerivedData/research/Build/Products/Debug/libea.a; sourceTree = "<group>"; };
 		480FBF7319618CC5006919A5 /* lod_knockouts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lod_knockouts.h; sourceTree = "<group>"; };
 		480FBF741961D70E006919A5 /* movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = movie.h; sourceTree = "<group>"; };
+		480FBF751961E118006919A5 /* apop_sterile_control.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = apop_sterile_control.cpp; sourceTree = "<group>"; };
+		480FBF841961E144006919A5 /* apop_sterile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = apop_sterile; sourceTree = BUILT_PRODUCTS_DIR; };
+		480FBF861961E355006919A5 /* apop_replaceable_control.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = apop_replaceable_control.cpp; sourceTree = "<group>"; };
+		480FBF951961E38E006919A5 /* apop_replaceable */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = apop_replaceable; sourceTree = BUILT_PRODUCTS_DIR; };
+		480FBF971961E63E006919A5 /* selfrep_not_sterile_ancestor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = selfrep_not_sterile_ancestor.h; sourceTree = "<group>"; };
 		48980894195064DB000D501E /* multi_founder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = multi_founder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +95,32 @@
 				42441A9D15861785009863BE /* libboost_regex.dylib in Frameworks */,
 				42441A9E15861785009863BE /* libboost_serialization.dylib in Frameworks */,
 				42441A9F15861785009863BE /* libboost_signals.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		480FBF791961E144006919A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FBF7A1961E144006919A5 /* libea.a in Frameworks */,
+				480FBF7B1961E144006919A5 /* libboost_iostreams.dylib in Frameworks */,
+				480FBF7C1961E144006919A5 /* libboost_program_options.dylib in Frameworks */,
+				480FBF7D1961E144006919A5 /* libboost_regex.dylib in Frameworks */,
+				480FBF7E1961E144006919A5 /* libboost_serialization.dylib in Frameworks */,
+				480FBF7F1961E144006919A5 /* libboost_signals.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		480FBF8A1961E38E006919A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FBF8B1961E38E006919A5 /* libea.a in Frameworks */,
+				480FBF8C1961E38E006919A5 /* libboost_iostreams.dylib in Frameworks */,
+				480FBF8D1961E38E006919A5 /* libboost_program_options.dylib in Frameworks */,
+				480FBF8E1961E38E006919A5 /* libboost_regex.dylib in Frameworks */,
+				480FBF8F1961E38E006919A5 /* libboost_serialization.dylib in Frameworks */,
+				480FBF901961E38E006919A5 /* libboost_signals.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				42441A8B15861724009863BE /* gls */,
+				480FBF841961E144006919A5 /* apop_sterile */,
+				480FBF951961E38E006919A5 /* apop_replaceable */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +166,9 @@
 				48980894195064DB000D501E /* multi_founder.h */,
 				480FBF7319618CC5006919A5 /* lod_knockouts.h */,
 				480FBF741961D70E006919A5 /* movie.h */,
+				480FBF751961E118006919A5 /* apop_sterile_control.cpp */,
+				480FBF861961E355006919A5 /* apop_replaceable_control.cpp */,
+				480FBF971961E63E006919A5 /* selfrep_not_sterile_ancestor.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -139,6 +207,40 @@
 			productReference = 42441A8B15861724009863BE /* gls */;
 			productType = "com.apple.product-type.tool";
 		};
+		480FBF761961E144006919A5 /* apop_sterile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 480FBF811961E144006919A5 /* Build configuration list for PBXNativeTarget "apop_sterile" */;
+			buildPhases = (
+				480FBF771961E144006919A5 /* Sources */,
+				480FBF791961E144006919A5 /* Frameworks */,
+				480FBF801961E144006919A5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = apop_sterile;
+			productName = ealife;
+			productReference = 480FBF841961E144006919A5 /* apop_sterile */;
+			productType = "com.apple.product-type.tool";
+		};
+		480FBF871961E38E006919A5 /* apop_replaceable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 480FBF921961E38E006919A5 /* Build configuration list for PBXNativeTarget "apop_replaceable" */;
+			buildPhases = (
+				480FBF881961E38E006919A5 /* Sources */,
+				480FBF8A1961E38E006919A5 /* Frameworks */,
+				480FBF911961E38E006919A5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = apop_replaceable;
+			productName = ealife;
+			productReference = 480FBF951961E38E006919A5 /* apop_replaceable */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,6 +263,8 @@
 			projectRoot = "";
 			targets = (
 				42441A8A15861724009863BE /* gls */,
+				480FBF761961E144006919A5 /* apop_sterile */,
+				480FBF871961E38E006919A5 /* apop_replaceable */,
 			);
 		};
 /* End PBXProject section */
@@ -171,6 +275,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				42441AA2158617D9009863BE /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		480FBF771961E144006919A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FBF851961E157006919A5 /* apop_sterile_control.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		480FBF881961E38E006919A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				480FBF961961E3B3006919A5 /* apop_replaceable_control.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +341,58 @@
 			};
 			name = Release;
 		};
+		480FBF821961E144006919A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/research/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../ealib/build/Debug\"",
+				);
+				PRODUCT_NAME = apop_sterile;
+			};
+			name = Debug;
+		};
+		480FBF831961E144006919A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/research/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../ealib/build/Debug\"",
+				);
+				PRODUCT_NAME = apop_sterile;
+			};
+			name = Release;
+		};
+		480FBF931961E38E006919A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/research/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../ealib/build/Debug\"",
+				);
+				PRODUCT_NAME = apop_replaceable;
+			};
+			name = Debug;
+		};
+		480FBF941961E38E006919A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/research/Build/Products/Debug\"",
+					"\"$(SRCROOT)/../ealib/build/Debug\"",
+				);
+				PRODUCT_NAME = apop_replaceable;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -238,6 +410,24 @@
 			buildConfigurations = (
 				42441A9315861725009863BE /* Debug */,
 				42441A9415861725009863BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		480FBF811961E144006919A5 /* Build configuration list for PBXNativeTarget "apop_sterile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480FBF821961E144006919A5 /* Debug */,
+				480FBF831961E144006919A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		480FBF921961E38E006919A5 /* Build configuration list for PBXNativeTarget "apop_replaceable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				480FBF931961E38E006919A5 /* Debug */,
+				480FBF941961E38E006919A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

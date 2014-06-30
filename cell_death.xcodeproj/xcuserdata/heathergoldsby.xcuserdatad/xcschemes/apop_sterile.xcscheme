@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42441A8A15861724009863BE"
-               BuildableName = "gls"
-               BlueprintName = "gls"
+               BlueprintIdentifier = "480FBF761961E144006919A5"
+               BuildableName = "apop_sterile"
+               BlueprintName = "apop_sterile"
                ReferencedContainer = "container:cell_death.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "42441A8A15861724009863BE"
-            BuildableName = "gls"
-            BlueprintName = "gls"
+            BlueprintIdentifier = "480FBF761961E144006919A5"
+            BuildableName = "apop_sterile"
+            BlueprintName = "apop_sterile"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,9 +52,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "42441A8A15861724009863BE"
-            BuildableName = "gls"
-            BlueprintName = "gls"
+            BlueprintIdentifier = "480FBF761961E144006919A5"
+            BuildableName = "apop_sterile"
+            BlueprintName = "apop_sterile"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,10 +62,6 @@
          <CommandLineArgument
             argument = "-c apop.cfg"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-l checkpoint-500000.xml.gz --analyze movie --ea.analysis.input.filename lod-500000.xml.gz"
-            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
@@ -80,9 +76,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "42441A8A15861724009863BE"
-            BuildableName = "gls"
-            BlueprintName = "gls"
+            BlueprintIdentifier = "480FBF761961E144006919A5"
+            BuildableName = "apop_sterile"
+            BlueprintName = "apop_sterile"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

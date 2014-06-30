@@ -12,4 +12,22 @@ exe gls :
 
 install dist : gls : <location>$(HOME)/bin ;
 
+exe apop_sterile :
+    src/apop_sterile_control.cpp
+    /libea//libea
+    /libea//libea_runner
+    : <include>./include <link>static
+    ;
+
+install dist : apop_sterile : <location>$(HOME)/bin ;
+
+exe apop_replaceable :
+    src/apop_replaceable_control.cpp
+    /libea//libea
+    /libea//libea_runner
+    : <include>./include <link>static
+    ;
+
+install dist : apop_replaceable : <location>$(HOME)/bin ;
+
 
