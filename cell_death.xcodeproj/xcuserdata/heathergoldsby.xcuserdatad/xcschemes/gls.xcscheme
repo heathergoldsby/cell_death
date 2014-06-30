@@ -44,7 +44,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/heathergoldsby/Desktop/research/apop"
+      customWorkingDirectory = "/Users/heathergoldsby/Desktop/research/code/configs/apop"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -61,6 +61,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-c apop.cfg"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-l checkpoint-500000.xml.gz --analyze movie --ea.analysis.input.filename lod-500000.xml.gz"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
