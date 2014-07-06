@@ -118,7 +118,7 @@ namespace ealib {
                     control->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(control->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(control->ea(), 0));
                 
                 cur_update = 0;
                 // and run till the group amasses the right amount of resources
@@ -127,7 +127,7 @@ namespace ealib {
                     all_ifs_knockedout->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(all_ifs_knockedout->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(all_ifs_knockedout->ea(), 0));
                 
                 cur_update = 0;
                 // and run till the group amasses the right amount of resources
@@ -136,7 +136,7 @@ namespace ealib {
                     if_5_knockedout->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(if_5_knockedout->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(if_5_knockedout->ea(), 0));
                 
                 cur_update = 0;
                 // and run till the group amasses the right amount of resources
@@ -145,7 +145,7 @@ namespace ealib {
                     if_10_knockedout->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(if_10_knockedout->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(if_10_knockedout->ea(), 0));
                 
                 cur_update = 0;
                 // and run till the group amasses the right amount of resources
@@ -154,7 +154,7 @@ namespace ealib {
                     if_25_knockedout->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(if_25_knockedout->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(if_25_knockedout->ea(), 0));
                 
                 cur_update = 0;
                 // and run till the group amasses the right amount of resources
@@ -163,7 +163,7 @@ namespace ealib {
                     if_50_knockedout->ea().update();
                     ++cur_update;
                 }
-                df.write(apop(get<APOPTOSIS_COUNT>(if_50_knockedout->ea(), 0)));
+                df.write(get<APOPTOSIS_COUNT>(if_50_knockedout->ea(), 0));
                 
                 
                 df.endl();
