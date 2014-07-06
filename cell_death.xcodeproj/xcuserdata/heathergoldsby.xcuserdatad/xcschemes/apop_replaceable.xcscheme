@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "480FBF871961E38E006919A5"
-               BuildableName = "apop_sterile"
+               BuildableName = "apop_replaceable"
                BlueprintName = "apop_replaceable"
                ReferencedContainer = "container:cell_death.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "480FBF871961E38E006919A5"
-            BuildableName = "apop_sterile"
+            BuildableName = "apop_replaceable"
             BlueprintName = "apop_replaceable"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "480FBF871961E38E006919A5"
-            BuildableName = "apop_sterile"
+            BuildableName = "apop_replaceable"
             BlueprintName = "apop_replaceable"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "480FBF871961E38E006919A5"
-            BuildableName = "apop_sterile"
+            BuildableName = "apop_replaceable"
             BlueprintName = "apop_replaceable"
             ReferencedContainer = "container:cell_death.xcodeproj">
          </BuildableReference>
