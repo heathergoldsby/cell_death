@@ -164,6 +164,52 @@ DIGEVO_INSTRUCTION_DECL(if_workload_g50){
     }
 }
 
+/*! Execute the next instruction if the wokload is greater than 5.
+ */
+DIGEVO_INSTRUCTION_DECL(apop_g5){
+    if(get<WORKLOAD>(*p, 0) > 5) {
+        p->alive() = false;
+        ea.events().death(*p,ea);
+        put<APOPTOSIS_STATUS>(1, *p);
+    }
+}
+
+DIGEVO_INSTRUCTION_DECL(apop_g10){
+    if(get<WORKLOAD>(*p, 0) > 10) {
+        p->alive() = false;
+        ea.events().death(*p,ea);
+        put<APOPTOSIS_STATUS>(1, *p);
+    }
+}
+
+DIGEVO_INSTRUCTION_DECL(apop_g25){
+    if(get<WORKLOAD>(*p, 0) > 25) {
+        p->alive() = false;
+        ea.events().death(*p,ea);
+        put<APOPTOSIS_STATUS>(1, *p);
+    }
+}
+
+DIGEVO_INSTRUCTION_DECL(apop_g50){
+    if(get<WORKLOAD>(*p, 0) > 50) {
+        p->alive() = false;
+        ea.events().death(*p,ea);
+        put<APOPTOSIS_STATUS>(1, *p);
+    }
+}
+
+DIGEVO_INSTRUCTION_DECL(apop_gx){
+    int rbx = hw.modifyRegister();
+
+    if(get<WORKLOAD>(*p, 0) > hw.getRegValue(rbx)) {
+        p->alive() = false;
+        ea.events().death(*p,ea);
+        put<APOPTOSIS_STATUS>(1, *p);
+    }
+}
+
+
+
 /*! Selects the location of an empty neighbor location *or a neighbor marked as replacable!*
  to the parent as the location for an offspring. 
  (Note: here empty includes locations occupied by dead organisms.)
@@ -432,7 +478,7 @@ struct gls_replication : end_of_update_event<EA> {
                 p->insert(p->end(), o);
                 
                 // add as founder
-                p->ea().founder().insert(p->ea().founder().end(), p->ea().copy_individual(*o));
+                //p->ea().founder().insert(p->ea().founder().end(), p->ea().copy_individual(*o));
                 
                 offspring.push_back(p);
                 

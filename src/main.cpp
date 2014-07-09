@@ -72,6 +72,11 @@ struct gls_configuration : public default_configuration {
         append_isa<if_workload_g10>(ea);
         append_isa<if_workload_g25>(ea);
         append_isa<if_workload_g50>(ea);
+        append_isa<apop_g5>(ea);
+        append_isa<apop_g10>(ea);
+        append_isa<apop_g25>(ea);
+        append_isa<apop_g50>(ea);
+        append_isa<apop_gx>(ea);
         
         add_event<task_mutagenesis>(ea);
         add_event<gs_apoptosis_event>(ea);
