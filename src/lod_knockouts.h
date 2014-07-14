@@ -17,6 +17,157 @@
 
 namespace ealib {
     namespace analysis {
+        template <typename EA>
+        void setup_ko_ea(EA& parent_ea, EA& ea) {
+            ea.rng().reset(get<RNG_SEED>(parent_ea));
+            for(typename EA::population_type::iterator j=parent_ea.founder().begin(); j!=parent_ea.founder().end(); ++j) {
+                
+                typename EA::individual_ptr_type o1 = parent_ea.copy_individual(**j);
+                o1->hw().initialize();
+                ea.insert(ea.end(), o1);
+            }
+            
+        }
+        
+        template <typename EA>
+        void run_ea_res(EA& ea, int update_max) {
+            int cur_update = 0;
+            // and run till the group amasses the right amount of resources
+            while ((get<GROUP_RESOURCE_UNITS>(ea,0) < get<GROUP_REP_THRESHOLD>(ea)) &&
+                   (cur_update < update_max)){
+                ea.update();
+                ++cur_update;
+            }
+        }
+        
+        
+        
+        
+        /*! lod_knockouts reruns each subpopulation along a line of descent and records how the subpopulation
+         fares with key coordination instructions removed.
+         
+         */
+        LIBEA_ANALYSIS_TOOL(lod_knockouts_apops) {
+            
+            line_of_descent<EA> lod = lod_load(get<ANALYSIS_INPUT>(ea), ea);
+            
+            typename line_of_descent<EA>::iterator i=lod.begin(); ++i;
+            
+            datafile df("lod_knockouts.dat");
+            df.add_field("lod_depth")
+            .add_field("no_knockouts")
+            .add_field("all_ifs_knockedout")
+            .add_field("if_5_knockedout")
+            .add_field("if_10_knockedout")
+            .add_field("if_25_knockedout")
+            .add_field("if_50_knockedout")
+            .add_field("apop_5_knockedout")
+            .add_field("apop_10_knockedout")
+            .add_field("apop_25_knockedout")
+            .add_field("apop_50_knockedout")
+            .add_field("apop_x_knockedout");
+            
+            
+            int lod_depth = 0;
+            // skip def ancestor (that's what the +1 does)
+            for( ; i!=lod.end(); ++i) {
+                
+                df.write(lod_depth);
+                
+                // **i is the EA, AS OF THE TIME THAT IT DIED!
+                
+                // To replay, need to create new eas for each knockout exper.
+                // setup the population (really, an ea):
+                typename EA::individual_ptr_type control = ea.make_individual();
+                setup_ko_ea(i->ea(), control->ea());
+        
+                typename EA::individual_ptr_type all_ifs_knockedout = ea.make_individual();
+                // knockout all ifs
+                knockout<if_workload_g5,instructions::nop_x>(all_ifs_knockedout->ea());
+                knockout<if_workload_g10,instructions::nop_x>(all_ifs_knockedout->ea());
+                knockout<if_workload_g25,instructions::nop_x>(all_ifs_knockedout->ea());
+                knockout<if_workload_g50,instructions::nop_x>(all_ifs_knockedout->ea());
+                setup_ko_ea(i->ea(), all_ifs_knockedout->ea());
+                
+                typename EA::individual_ptr_type if_5_knockedout = ea.make_individual();
+                knockout<if_workload_g5,instructions::nop_x>(if_5_knockedout->ea());
+                setup_ko_ea(i->ea(), if_5_knockedout->ea());
+
+                typename EA::individual_ptr_type if_10_knockedout = ea.make_individual();
+                knockout<if_workload_g10,instructions::nop_x>(if_10_knockedout->ea());
+                setup_ko_ea(i->ea(), if_10_knockedout->ea());
+                
+                typename EA::individual_ptr_type if_25_knockedout = ea.make_individual();
+                knockout<if_workload_g25,instructions::nop_x>(if_25_knockedout->ea());
+                setup_ko_ea(i->ea(), if_25_knockedout->ea());
+                
+                typename EA::individual_ptr_type if_50_knockedout = ea.make_individual();
+                knockout<if_workload_g50,instructions::nop_x>(if_50_knockedout->ea());
+                setup_ko_ea(i->ea(), if_50_knockedout->ea());
+                
+                typename EA::individual_ptr_type apop_5_knockedout = ea.make_individual();
+                knockout<apop_g5,instructions::nop_x>(apop_5_knockedout->ea());
+                setup_ko_ea(i->ea(), apop_5_knockedout->ea());
+                
+                typename EA::individual_ptr_type apop_10_knockedout = ea.make_individual();
+                knockout<apop_g10,instructions::nop_x>(apop_10_knockedout->ea());
+                setup_ko_ea(i->ea(), apop_10_knockedout->ea());
+                
+                typename EA::individual_ptr_type apop_25_knockedout = ea.make_individual();
+                knockout<apop_g25,instructions::nop_x>(apop_25_knockedout->ea());
+                setup_ko_ea(i->ea(), apop_25_knockedout->ea());
+                
+                typename EA::individual_ptr_type apop_50_knockedout = ea.make_individual();
+                knockout<apop_g50,instructions::nop_x>(apop_50_knockedout->ea());
+                setup_ko_ea(i->ea(), apop_50_knockedout->ea());
+
+                typename EA::individual_ptr_type apop_x_knockedout = ea.make_individual();
+                knockout<apop_gx,instructions::nop_x>(apop_x_knockedout->ea());
+                setup_ko_ea(i->ea(), apop_x_knockedout->ea());
+                
+             
+                run_ea_res(control->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(control->ea(), 0));
+                
+                run_ea_res(all_ifs_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(all_ifs_knockedout->ea(), 0));
+                
+                run_ea_res(if_5_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(if_5_knockedout->ea(), 0));
+                
+                run_ea_res(if_10_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(if_10_knockedout->ea(), 0));
+                
+                run_ea_res(if_25_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(if_25_knockedout->ea(), 0));
+                
+                run_ea_res(if_50_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(if_50_knockedout->ea(), 0));
+
+                run_ea_res(apop_5_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(apop_5_knockedout->ea(), 0));
+
+                run_ea_res(apop_10_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(apop_10_knockedout->ea(), 0));
+                
+                run_ea_res(apop_25_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(apop_25_knockedout->ea(), 0));
+                
+                run_ea_res(apop_50_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(apop_50_knockedout->ea(), 0));
+                
+                run_ea_res(apop_x_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(apop_x_knockedout->ea(), 0));
+                
+                df.endl();
+                
+                
+                ++lod_depth;
+            }
+            
+            
+        }
+
         
         
         /*! lod_knockouts reruns each subpopulation along a line of descent and records how the subpopulation

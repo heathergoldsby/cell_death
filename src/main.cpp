@@ -201,8 +201,9 @@ public:
     
     virtual void gather_tools() {
 
-        add_tool<ealib::analysis::lod_knockouts>(this);
+        add_tool<ealib::analysis::lod_knockouts_apops>(this);
         add_tool<ealib::analysis::movie>(this);
+        
         //add_tool<ealib::analysis::lod_gls_circle_square_plot>(this);
         //add_tool<ealib::analysis::lod_gls_germ_soma_mean_var>(this);
         //add_tool<ealib::analysis::lod_gls_aging_res_over_time>(this);
