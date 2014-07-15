@@ -107,7 +107,7 @@ namespace ealib {
                 setup_ko_ea(i->ea(), if_50_knockedout->ea());
                 
                 typename EA::individual_ptr_type apop_knockedout = ea.make_individual();
-                knockout<apoptosis,instructions::nop_x>(apop_knockedout->ea());
+                knockout<instructions::apoptosis,instructions::nop_x>(apop_knockedout->ea());
                 setup_ko_ea(i->ea(), apop_knockedout->ea());
                 
                 typename EA::individual_ptr_type apop_5_knockedout = ea.make_individual();
