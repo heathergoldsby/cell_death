@@ -61,6 +61,7 @@ namespace ealib {
             .add_field("if_10_knockedout")
             .add_field("if_25_knockedout")
             .add_field("if_50_knockedout")
+            .add_field("all_apops_knockedout")
             .add_field("apop_knockedout")
             .add_field("apop_5_knockedout")
             .add_field("apop_10_knockedout")
@@ -106,6 +107,15 @@ namespace ealib {
                 knockout<if_workload_g50,instructions::nop_x>(if_50_knockedout->ea());
                 setup_ko_ea(i->ea(), if_50_knockedout->ea());
                 
+                typename EA::individual_ptr_type all_apops_knockedout = ea.make_individual();
+                knockout<instructions::apoptosis,instructions::nop_x>(all_apops_knockedout->ea());
+                knockout<apop_g5,instructions::nop_x>(all_apops_knockedout->ea());
+                knockout<apop_g10,instructions::nop_x>(all_apops_knockedout->ea());
+                knockout<apop_g25,instructions::nop_x>(all_apops_knockedout->ea());
+                knockout<apop_g50,instructions::nop_x>(all_apops_knockedout->ea());
+                knockout<apop_gx,instructions::nop_x>(all_apops_knockedout->ea());
+                setup_ko_ea(i->ea(), all_apops_knockedout->ea());
+                
                 typename EA::individual_ptr_type apop_knockedout = ea.make_individual();
                 knockout<instructions::apoptosis,instructions::nop_x>(apop_knockedout->ea());
                 setup_ko_ea(i->ea(), apop_knockedout->ea());
@@ -149,6 +159,9 @@ namespace ealib {
                 run_ea_res(if_50_knockedout->ea(), 1000);
                 df.write(get<APOPTOSIS_COUNT>(if_50_knockedout->ea(), 0));
 
+                run_ea_res(all_apops_knockedout->ea(), 1000);
+                df.write(get<APOPTOSIS_COUNT>(all_apops_knockedout->ea(), 0));
+                
                 run_ea_res(apop_knockedout->ea(), 1000);
                 df.write(get<APOPTOSIS_COUNT>(apop_knockedout->ea(), 0));
                 
